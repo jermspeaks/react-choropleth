@@ -47,6 +47,15 @@ function getDefaultModules() {
       {
         test: /\.(png|jpg|gif|woff|woff2)$/,
         loader: 'url-loader?limit=8192'
+      },
+      {
+        //will load all .csv files with dsv-loader by default
+        test: /\.(tsv|csv)?$/,
+        loader: 'dsv-loader'
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
       }
     ]
   };
