@@ -7,46 +7,67 @@ $color-level-5: rgb(66, 146, 198);
 $color-level-6: rgb(33, 113, 181);
 $color-level-7: rgb(8, 81, 156);
 $color-level-8: rgb(8, 48, 107);
+$color-white: #fff;
+$color-light-gray: #ccc;
+$color-black: #000;
 
+.choropleth {
+  background: $color-light-gray;
+}
 
-.states {
-  fill: none;
-  stroke: #fff;
-  stroke-linejoin: round;
+.choropleth-state {
+  stroke: $color-black;
+  stroke-width: 1px;
+}
+
+.choropleth-text {
+  font-family: sans-serif;
+  text-anchor: middle;
+  font-size: 10px;
+  fill: black;
 }
 
 .q0-9 {
+  @extend .choropleth-state;
   fill: $color-level-0;
 }
 
 .q1-9 {
+  @extend .choropleth-state;
   fill: $color-level-1;
 }
 
 .q2-9 {
+  @extend .choropleth-state;
   fill: $color-level-2;
 }
 
 .q3-9 {
+  @extend .choropleth-state;
   fill: $color-level-3;
 }
 
 .q4-9 {
+  @extend .choropleth-state;
   fill: $color-level-4;
 }
 
 .q5-9 {
+  @extend .choropleth-state;
   fill: $color-level-5;
 }
 
 .q6-9 {
+  @extend .choropleth-state;
   fill: $color-level-6;
 }
 
 .q7-9 {
+  @extend .choropleth-state;
   fill: $color-level-7;
 }
 
 .q8-9 {
+  @extend .choropleth-state;
   fill: $color-level-8;
 }

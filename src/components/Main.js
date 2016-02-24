@@ -5,7 +5,50 @@ import React, {Component, PropTypes} from 'react';
 import d3 from 'd3';
 import topojson from 'topojson';
 
-// let us = require('../../data/us.json');
+let usData = require('../us.json');
+const videoViewData = [{
+    location: 'WA',
+    videoViews: 5100
+  }, {
+    location: 'NV',
+    videoViews: 7717
+  }, {
+    location: 'CA',
+    videoViews: 5464
+  }, {
+    location: 'OR',
+    videoViews: 2030
+  }, {
+    location: 'ID',
+    videoViews: 8177
+  }, {
+    location: 'MT',
+    videoViews: 5035
+  }, {
+    location: 'UT',
+    videoViews: 1100
+  }, {
+    location: 'AZ',
+    videoViews: 1357
+  }, {
+    location: 'WY',
+    videoViews: 8801
+  }, {
+    location: 'CO',
+    videoViews: 1100
+  }, {
+    location: 'PA',
+    videoViews: 3283
+  }, {
+    location: 'AL',
+    videoViews: 4698
+  }, {
+    location: 'SC',
+    videoViews: 8727
+  }, {
+    location: 'GA',
+    videoViews: 8527
+}];
 
 class AppComponent extends Component {
   constructor() {
@@ -17,49 +60,52 @@ class AppComponent extends Component {
   }
 
   componentWillMount() {
-    let usJSONUrl = 'https://gist.githubusercontent.com/jermspeaks/fac1ed95e1728fbd1fbe/raw/c340b4da7131fe687fc7e89bb9630e6dfba9921f/states.json';
+    this.setState({
+      states: topojson.feature(usData, usData.objects.states).features
+    });
+  }
 
-    d3.json(usJSONUrl, usData => {
-      this.setState({
-        states: topojson.feature(usData, usData.objects.states).features
-      });
-    })
+  pathGenerator() {
+    return d3.geo.path();
+  }
+
+  quantize() {
+    return d3.scale.quantize()
+      .domain([0, 8801])
+      .range(d3.range(9).map(i => `q${i}-9`));
+  }
+
+  getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
   }
 
   render() {
-    const pathGenerator = d3.geo.path();
-    const quantize = d3.scale.quantize()
-      .domain([0, 8])
-      .range(d3.range(9).map(i => `q${i}-9`));
-
-    const getRandomInt = (min, max) => {
-      return Math.floor(Math.random() * (max - min)) + min;
-    };
+    const pathGenerator = this.pathGenerator();
+    const quantize = this.quantize();
 
     return (
-      <div className="index">
+      <div className='choropleth'>
         <svg
-          className='choropleth Blues'
+          className='choropleth-map'
           width={this.props.width}
           height={this.props.height}
         >
           <g className='state'>
             {this.state.states.map((state, stateIndex) => {
-              const randomInt = getRandomInt(0, 8);
+              // const randomInt = this.getRandomInt(0, 8);
+              const stateInformation = videoViewData.find(d => d.location === state.properties.initials);
+              const videoViewLevel = stateInformation ? stateInformation.videoViews: 0;
               const pathGenerated = pathGenerator(state);
               return (
                 <g key={stateIndex}>
                   <path
-                    className={quantize(randomInt)}
+                    className={quantize(videoViewLevel)}
                     d={pathGenerated}
                   />
                   <text
+                    className='choropleth-text'
                     x={pathGenerator.centroid(state)[0]}
                     y={pathGenerator.centroid(state)[1]}
-                    fontFamily="sans-serif"
-                    textAnchor="middle"
-                    fontSize="10px"
-                    fill="black"
                   >{state.properties.initials}</text>
                 </g>
               )
@@ -70,10 +116,6 @@ class AppComponent extends Component {
     );
   }
 }
-
-// x={pathGenerator.centroid(state)[0]}
-// y={pathGenerator.centroid(state)[1]}
-
 
 AppComponent.propTypes = {
   width: PropTypes.number.isRequired,
