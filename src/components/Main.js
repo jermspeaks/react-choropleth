@@ -72,7 +72,7 @@ class AppComponent extends Component {
   quantize() {
     return d3.scale.quantize()
       .domain([0, 8801])
-      .range(d3.range(9).map(i => `q${i}-9`));
+      .range(d3.range(5).map(i => `q${i}-9`));
   }
 
   getRandomInt(min, max) {

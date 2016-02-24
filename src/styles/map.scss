@@ -16,58 +16,38 @@ $color-black: #000;
 }
 
 .choropleth-state {
-  stroke: $color-black;
-  stroke-width: 1px;
+  stroke: $color-white;
+  stroke-width: 2px;
 }
 
 .choropleth-text {
   font-family: sans-serif;
   text-anchor: middle;
-  font-size: 10px;
-  fill: black;
+  font-size: 9px;
+  fill: $color-black;
 }
 
 .q0-9 {
   @extend .choropleth-state;
-  fill: $color-level-0;
+  fill: $color-level-2;
 }
 
 .q1-9 {
   @extend .choropleth-state;
-  fill: $color-level-1;
+  fill: $color-level-3;
 }
 
 .q2-9 {
   @extend .choropleth-state;
-  fill: $color-level-2;
+  fill: $color-level-4;
 }
 
 .q3-9 {
   @extend .choropleth-state;
-  fill: $color-level-3;
+  fill: $color-level-5;
 }
 
 .q4-9 {
   @extend .choropleth-state;
-  fill: $color-level-4;
-}
-
-.q5-9 {
-  @extend .choropleth-state;
-  fill: $color-level-5;
-}
-
-.q6-9 {
-  @extend .choropleth-state;
   fill: $color-level-6;
-}
-
-.q7-9 {
-  @extend .choropleth-state;
-  fill: $color-level-7;
-}
-
-.q8-9 {
-  @extend .choropleth-state;
-  fill: $color-level-8;
 }
