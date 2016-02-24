@@ -1,0 +1,52 @@
+$color-level-0: rgb(247, 251, 255);
+$color-level-1: rgb(222, 235, 247);
+$color-level-2: rgb(198, 219, 239);
+$color-level-3: rgb(158, 202, 225);
+$color-level-4: rgb(107, 174, 214);
+$color-level-5: rgb(66, 146, 198);
+$color-level-6: rgb(33, 113, 181);
+$color-level-7: rgb(8, 81, 156);
+$color-level-8: rgb(8, 48, 107);
+
+
+.states {
+  fill: none;
+  stroke: #fff;
+  stroke-linejoin: round;
+}
+
+.q0-9 {
+  fill: $color-level-0;
+}
+
+.q1-9 {
+  fill: $color-level-1;
+}
+
+.q2-9 {
+  fill: $color-level-2;
+}
+
+.q3-9 {
+  fill: $color-level-3;
+}
+
+.q4-9 {
+  fill: $color-level-4;
+}
+
+.q5-9 {
+  fill: $color-level-5;
+}
+
+.q6-9 {
+  fill: $color-level-6;
+}
+
+.q7-9 {
+  fill: $color-level-7;
+}
+
+.q8-9 {
+  fill: $color-level-8;
+}
