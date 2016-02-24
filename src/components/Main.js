@@ -29,16 +29,20 @@ class AppComponent extends Component {
     d3.json(usJSONUrl, usData => {
       this.setState({
         // counties: topojson.feature(usData, usData.objects.counties).features,
-        state: topojson.feature(usData, usData.objects.states).features
+        states: topojson.feature(usData, usData.objects.states).features
       });
     })
   }
 
   render() {
     const pathGenerator = d3.geo.path();
-    // const quantize = d3.scale.quantize()
-    //   .domain([0, 0.15])
-    //   .range(d3.range(9).map(i => `q${i}-9`));
+    const quantize = d3.scale.quantize()
+      .domain([0, 8])
+      .range(d3.range(9).map(i => `q${i}-9`));
+
+    const getRandomInt = (min, max) => {
+      return Math.floor(Math.random() * (max - min)) + min;
+    };
 
     return (
       <div className="index">
@@ -48,19 +52,18 @@ class AppComponent extends Component {
           width={this.props.width}
           height={this.props.height}
         >
-          <g className='counties'>
+          <g className='state'>
             {this.state.states.map((state, stateIndex) => {
+              const randomInt = getRandomInt(0, 8);
               return (
                 <path
                   key={stateIndex}
-                  className='q7-9'
+                  className={quantize(randomInt)}
                   d={pathGenerator(state)}
                 />
               )
             })}
           </g>
-
-          {/*<path className='state' d={pathGenerator(this.state.states)}/>*/}
         </svg>
       </div>
     );
