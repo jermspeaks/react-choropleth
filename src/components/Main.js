@@ -13,25 +13,23 @@ class AppComponent extends Component {
   constructor() {
     super();
     this.state = {
-      counties: [],
-      states: {},
+      // counties: [],
+      states: [],
       rateById: d3.map()
     };
   }
 
   componentWillMount() {
-    let unemploymentUrl = 'https://gist.githubusercontent.com/pleasetrythisathome/9713092/raw/5cc6f9b62306555ac8a51c89cbc0ba1b8d38649f/unemployment.tsv';
+    // let unemploymentUrl = 'https://gist.githubusercontent.com/pleasetrythisathome/9713092/raw/5cc6f9b62306555ac8a51c89cbc0ba1b8d38649f/unemployment.tsv';
     let usJSONUrl = 'https://gist.githubusercontent.com/jermspeaks/fac1ed95e1728fbd1fbe/raw/ddb7df44c99286b5f1bd2394d20317fd7683c8f8/us.json';
-    d3.tsv(unemploymentUrl, data => {
-      this.state.rateById.set(data.id, +data.rate);
-    });
+    // d3.tsv(unemploymentUrl, data => {
+    //   this.state.rateById.set(data.id, +data.rate);
+    // });
 
     d3.json(usJSONUrl, usData => {
       this.setState({
-        counties: topojson.feature(usData, usData.objects.counties).features,
-        state: topojson.mesh(usData, usData.objects.states, (a, b) => {
-          return a !== b;
-        })
+        // counties: topojson.feature(usData, usData.objects.counties).features,
+        state: topojson.feature(usData, usData.objects.states).features
       });
     })
   }
@@ -51,18 +49,18 @@ class AppComponent extends Component {
           height={this.props.height}
         >
           <g className='counties'>
-            {this.state.counties.map((county, countyIndex) => {
+            {this.state.states.map((state, stateIndex) => {
               return (
                 <path
-                  key={countyIndex}
+                  key={stateIndex}
                   className='q7-9'
-                  d={pathGenerator(county)}
+                  d={pathGenerator(state)}
                 />
               )
             })}
           </g>
 
-          <path className='state' d={pathGenerator(this.state.states)}/>
+          {/*<path className='state' d={pathGenerator(this.state.states)}/>*/}
         </svg>
       </div>
     );
