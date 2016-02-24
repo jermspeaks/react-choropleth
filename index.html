@@ -56,7 +56,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.20/topojson.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.10.0/react.js"></script>
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script> -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
 
   <script>
     var Choropleth = {};
@@ -109,7 +108,7 @@
           g({
               className: "counties"
             },
-            _.map(this.state.counties, function(county) {
+            this.state.counties.map(function(county) {
               return path({
                 className: cmp.quantize(cmp.state.rateById.get(county.id)),
                 d: pathGenerator(county)

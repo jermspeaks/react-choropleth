@@ -1,0 +1,7 @@
+{
+  "generator-react-webpack": {
+    "appName": "reactCloropleth",
+    "style": "scss",
+    "postcss": false
+  }
+}
