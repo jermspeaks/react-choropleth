@@ -14,23 +14,6 @@ class ChoroplethState extends Component {
       .call(ChoroplethVisualization.enter);
   }
 
-  // shouldComponentUpdate(nextProps) {
-  //   if (nextProps.data.update) {
-  //     this.d3Node.datum(nextProps.data)
-  //       .call(ChoroplethStateVisualization.update);
-  //   }
-  //   return true;
-  // }
-  //
-  // componentDidUpate() {
-  //   this.d3Node.datum(this.props.data)
-  //     .call(ChoroplethStateVisualization.update);
-  // }
-  //
-  // componentWillUnMount() {
-  //
-  // }
-
   render() {
     return (
       <g className='state' ref='state' />

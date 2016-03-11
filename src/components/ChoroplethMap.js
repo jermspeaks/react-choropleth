@@ -4,7 +4,7 @@ import {videoViewData} from '../data/videoViewData';
 import ChoroplethState from './ChoroplethState';
 const usData = require('../us.json');
 
-class Choropleth extends Component {
+class ChoroplethMap extends Component {
   constructor() {
     super();
     this.state = {
@@ -15,7 +15,7 @@ class Choropleth extends Component {
 
   render() {
     return (
-      <g className='state' ref='choropleth'>
+      <g className='choropleth' ref='choropleth'>
         {this.state.states.map((state, stateIndex) => {
           state.stateInfo = this.state.data.find(d => d.location === state.properties.initials) || {};
           return (
@@ -30,4 +30,4 @@ class Choropleth extends Component {
   }
 }
 
-export default Choropleth;
+export default ChoroplethMap;

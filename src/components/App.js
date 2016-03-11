@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
-import Choropleth from './Choropleth';
+import ChoroplethMap from './ChoroplethMap';
+import ChoroplethLegend from './ChoroplethLegend';
 
 require('normalize.css');
 require('styles/App.scss');
@@ -13,7 +14,13 @@ class App extends Component {
           width={this.props.width}
           height={this.props.height}
         >
-          <Choropleth />
+          <ChoroplethMap />
+          <ChoroplethLegend
+            svgWidth={this.props.width}
+            svgHeight={this.props.height}
+            maxValue={8891}
+            title='Video Views'
+          />
         </svg>
         <div className='choropleth-tooltip' />
       </div>
