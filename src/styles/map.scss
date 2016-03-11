@@ -51,3 +51,53 @@ $color-black: #000;
   @extend .choropleth-state;
   fill: $color-level-6;
 }
+
+// Text
+.choropleth-text,
+.choropleth-legend-text,
+.choropleth-legend-min,
+.choropleth-legend-max {
+  font-family: Arial, sans-serif;
+  fill: #000;
+}
+
+.choropleth-text {
+  text-anchor: middle;
+  font-size: 10px;
+}
+
+// Legend
+.choropleth-legend-stop-1 {
+  stop-color: $color-level-2;
+  stop-opacity: 1;
+}
+
+.choropleth-legend-stop-2 {
+  stop-color: $color-level-6;
+  stop-opacity: 1;
+}
+
+.choropleth-legend-rect {
+  fill: url("#gradient");
+}
+
+// Legend Text
+.choropleth-legend-text,
+.choropleth-legend-min,
+.choropleth-legend-max {
+  font-size: 11px;
+}
+
+.choropleth-legend-min {
+  text-anchor: start;
+}
+
+.choropleth-legend-max {
+  text-anchor: end;
+}
+
+.choropleth-tooltip {
+  fill: $color-level-0;
+  height: 48px;
+  width: 76px;
+}
