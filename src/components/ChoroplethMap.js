@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import topojson from 'topojson';
-import {videoViewData} from '../data/videoViewData';
 import ChoroplethState from './ChoroplethState';
 const usData = require('../us.json');
 
@@ -8,7 +7,6 @@ class ChoroplethMap extends Component {
   constructor() {
     super();
     this.state = {
-      data: videoViewData,
       states: topojson.feature(usData, usData.objects.states).features
     };
   }
@@ -17,7 +15,7 @@ class ChoroplethMap extends Component {
     return (
       <g className='choropleth' ref='choropleth'>
         {this.state.states.map((state, stateIndex) => {
-          state.stateInfo = this.state.data.find(d => d.location === state.properties.initials) || {};
+          state.stateInfo = this.props.data.find(d => d.location === state.properties.initials) || {};
           return (
             <ChoroplethState
               state={state}
@@ -29,5 +27,9 @@ class ChoroplethMap extends Component {
     );
   }
 }
+
+ChoroplethMap.propTypes = {
+  data: PropTypes.array.isRequired
+};
 
 export default ChoroplethMap;
