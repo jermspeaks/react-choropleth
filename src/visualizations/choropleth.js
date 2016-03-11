@@ -24,8 +24,8 @@ Choropleth.enter = selection => {
     .classed('hidden', true);
 
   path.on('mousemove', d => {
+    var mouse = d3.mouse(svg.node()).map(d => parseInt(d, 10));
     if (d.stateInfo.videoViews) {
-      var mouse = d3.mouse(svg.node()).map(d => parseInt(d, 10));
       tooltip.html(`
         <div class='choropleth-tooltip-text'>
           <span>${d.properties.initials}</span>
@@ -34,10 +34,19 @@ Choropleth.enter = selection => {
           <span>Video Views: ${d.stateInfo.videoViews}</span>
         </div>
       `);
-
-      tooltip.classed('hidden', false)
-        .attr('style', `left: ${(mouse[0] + 15)}px; top: ${(mouse[1] - 35)}px`);
+    } else {
+      tooltip.html(`
+        <div class='choropleth-tooltip-text'>
+          <span>${d.properties.initials}</span>
+        </div>
+        <div class='choropleth-tooltip-details'>
+          <span>Video Views: 0</span>
+        </div>
+      `);
     }
+
+    tooltip.classed('hidden', false)
+      .attr('style', `left: ${(mouse[0] + 15)}px; top: ${(mouse[1] - 35)}px`);
   })
   .on('mouseout', d => {
     if (d.stateInfo.videoViews) {

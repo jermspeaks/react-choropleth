@@ -30,26 +30,46 @@ $color-black: #000;
 .q0-9 {
   @extend .choropleth-state;
   fill: $color-level-2;
+
+  &:hover {
+    fill: lighten($color-level-2, 10%);
+  }
 }
 
 .q1-9 {
   @extend .choropleth-state;
   fill: $color-level-3;
+
+  &:hover {
+    fill: lighten($color-level-3, 10%);
+  }
 }
 
 .q2-9 {
   @extend .choropleth-state;
   fill: $color-level-4;
+
+  &:hover {
+    fill: lighten($color-level-4, 10%);
+  }
 }
 
 .q3-9 {
   @extend .choropleth-state;
   fill: $color-level-5;
+
+  &:hover {
+    fill: lighten($color-level-5, 10%);
+  }
 }
 
 .q4-9 {
   @extend .choropleth-state;
   fill: $color-level-6;
+
+  &:hover {
+    fill: lighten($color-level-6, 10%);
+  }
 }
 
 // Text
