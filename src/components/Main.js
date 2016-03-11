@@ -14,7 +14,6 @@ class Choropleth extends Component {
     this.state = {
       states: [],
       containerWidth: props.width,
-      maxValue: 500,
       tooltip: {
         enabled: false
       }
