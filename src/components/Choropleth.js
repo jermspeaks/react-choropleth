@@ -1,55 +1,33 @@
-import React, {Component, PropTypes} from 'react';
-import d3 from 'd3';
-import ChoroplethVisualization from '../visualizations/choropleth';
-import reactDOM from 'react-dom';
+import React, {Component} from 'react';
+import topojson from 'topojson';
+import {videoViewData} from '../data/videoViewData';
+import ChoroplethState from './ChoroplethState';
+const usData = require('../us.json');
 
 class Choropleth extends Component {
   constructor() {
     super();
     this.state = {
-      data: []
+      data: videoViewData,
+      states: topojson.feature(usData, usData.objects.states).features
     };
   }
 
-  componentDidMount() {
-    // wrap element in d3
-    this.d3Node = d3.select(this.refs.choropleth);
-    this.d3Node.datum(this.props.data)
-      .call(ChoroplethVisualization.enter);
-  }
-
-  // shouldComponentUpdate(nextProps) {
-  //   if (nextProps.data.update) {
-  //     this.d3Node.datum(nextProps.data)
-  //       .call(ChoroplethVisualization.update);
-  //   }
-  //   return true;
-  // }
-  //
-  // componentDidUpate() {
-  //   this.d3Node.datum(this.props.data)
-  //     .call(ChoroplethVisualization.update);
-  // }
-  //
-  // componentWillUnMount() {
-  //
-  // }
-
   render() {
     return (
-      <g className='state' ref='choropleth'/>
+      <g className='state' ref='choropleth'>
+        {this.state.states.map((state, stateIndex) => {
+          state.stateInfo = this.state.data.find(d => d.location === state.properties.initials) || {};
+          return (
+            <ChoroplethState
+              state={state}
+              key={stateIndex}
+            />
+          );
+        })}
+      </g>
     );
   }
 }
-
-Choropleth.propTypes = {
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired
-};
-
-Choropleth.defaultProps = {
-  width: 960,
-  height: 500
-};
 
 export default Choropleth;

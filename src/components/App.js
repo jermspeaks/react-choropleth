@@ -15,6 +15,7 @@ class App extends Component {
         >
           <Choropleth />
         </svg>
+        <div className='choropleth-tooltip' />
       </div>
     );
   }
